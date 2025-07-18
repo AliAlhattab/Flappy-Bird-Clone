@@ -10,10 +10,17 @@ public class LogicScript : MonoBehaviour
     public GameObject gameOverScreen;
     public GameObject startScreen;
     public GameObject gameScene;
+    public BirdScript bird;
+    
 
 
     public void addScore(int addToScore)
     {
+        //if (bird.isBirdAlive)
+        //{
+        //playerScore = playerScore + addToScore;
+        //score.text = playerScore.ToString();
+        //}
         playerScore = playerScore + addToScore;
         score.text = playerScore.ToString();
     }

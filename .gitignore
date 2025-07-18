@@ -22,6 +22,7 @@ MemoryCaptures/
 *.opendb
 
 .vscode/
+.vs/
 .idea/
 .DS_Store
 *.apk
