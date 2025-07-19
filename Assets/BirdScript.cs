@@ -8,6 +8,11 @@ public class BirdScript : MonoBehaviour
     public LogicScript logic;
     public Boolean isBirdAlive = true;
 
+    public GameObject wingUp;
+    public GameObject wingDown;
+
+    public float flapDisplayTime = 0.15f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,12 +25,27 @@ public class BirdScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && isBirdAlive)
         {
-
+            Flap();
             myRigidBody.linearVelocity = Vector2.up * flapStrength;
 
         }
 
         offScreen();
+    }
+
+    void Flap()
+    {
+        StartCoroutine(ShowWingUpThenDown());
+    }
+     System.Collections.IEnumerator ShowWingUpThenDown()
+    {
+        wingUp.SetActive(true);
+        wingDown.SetActive(false);
+
+        yield return new WaitForSeconds(flapDisplayTime);
+
+        wingUp.SetActive(false);
+        wingDown.SetActive(true);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -36,7 +56,7 @@ public class BirdScript : MonoBehaviour
 
     void offScreen()
     {
-        if (myRigidBody.transform.position.y < -12 || myRigidBody.transform.position.y > 12)
+        if (myRigidBody.transform.position.y < -13 || myRigidBody.transform.position.y > 13)
         {
         logic.gameOver();
         isBirdAlive = false;
